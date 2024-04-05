@@ -1,0 +1,23 @@
+version: '3.4'
+services:
+  # API server
+  golang-prod:
+    build:
+      context: golang
+      dockerfile: server.Dockerfile
+      target: prod
+  
+  # worker
+  worker-prod:
+    build:
+      context: golang
+      dockerfile: worker.Dockerfile
+      target: prod
+
+  # front-end built with react
+  react-prod:
+    build:
+      context: react
+      target: prod
+    volumes:
+    - ./.npm:/.npm
