@@ -2,7 +2,7 @@
 
 Dockerized (postgres + nginx + golang + react) starter kit
 
-Only implements `users`, `sessions`, `password_resets`, and a toy `post` type to demonstrate basic CRUD. PNGR is _not_ a CMS.
+Only implements `users`, `sessions`, `password_resets`, and a toy `post` type to demonstrate basic CRUD.
 
 ## Features and Stack
 
@@ -26,7 +26,7 @@ Install `docker` && `docker-compose`
 ## Quick Start
 ```bash
 # clone the repo
-git clone https://github.com/karlkeefer/pngr.git my_project_name
+git clone git@github.com:vineetsgr07/ecommerce-golang.git
 
 # copy the .env template for your local version
 cp .env.example .env
