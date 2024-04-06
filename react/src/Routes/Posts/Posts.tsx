@@ -1,9 +1,9 @@
-import React, { useContext, useEffect,useCallback } from 'react'
+import React, { useContext, useEffect, useCallback } from 'react'
 import './style.css'
 
 import { useParams, useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom'
-import { Segment, Message, Header,Grid, Button, Placeholder, SegmentGroup, PlaceholderHeader,Table} from 'semantic-ui-react'
+import { Segment, Message, Header, Image, Grid, Button, Placeholder, SegmentGroup, PlaceholderHeader, Table } from 'semantic-ui-react'
 
 import API from 'Api'
 import { useRequest } from 'Shared/Hooks'
@@ -30,10 +30,10 @@ const Posts = () => {
         </Grid.Column>
       </Grid>
 
-      {loading && <PostsPlaceholder/>}
-      {posts.length === 0 && !loading && 
+      {loading && <PostsPlaceholder />}
+      {posts.length === 0 && !loading &&
         <Message warning>No posts found...</Message>}
-      {<PostsTable posts={posts}/>}
+      {<PostsTable posts={posts} />}
     </SimplePage>
   )
 }
@@ -45,7 +45,7 @@ const PostsPlaceholder = () => (
     <Segment attached='bottom'>
       <Placeholder>
         <Placeholder.Header>
-          <Placeholder.Line/>
+          <Placeholder.Line />
         </Placeholder.Header>
       </Placeholder>
     </Segment>
@@ -70,19 +70,21 @@ const PostsPlaceholder = () => (
 // )
 
 
-const PostsTable = ({ posts }:any) => (
+const PostsTable = ({ posts }: any) => (
   <Table celled>
-     <Table.Header>
+    <Table.Header>
       <tr>
-        <Table.HeaderCell> Product</Table.HeaderCell>
-        <Table.HeaderCell> Title</Table.HeaderCell>
+        <Table.HeaderCell> </Table.HeaderCell>
+        <Table.HeaderCell> Product Name</Table.HeaderCell>
+        <Table.HeaderCell> SKU</Table.HeaderCell>
+        <Table.HeaderCell> Variant</Table.HeaderCell>
+        <Table.HeaderCell> Price</Table.HeaderCell>
         <Table.HeaderCell> Status</Table.HeaderCell>
-        <Table.HeaderCell> Image</Table.HeaderCell>
         <Table.HeaderCell> Edit/Delete</Table.HeaderCell>
       </tr>
     </Table.Header>
     <tbody>
-      {posts.map((post:any) => (
+      {posts.map((post: any) => (
         <SinglePost key={post.id} {...post} />
       ))}
     </tbody>
@@ -90,28 +92,56 @@ const PostsTable = ({ posts }:any) => (
 );
 
 const SinglePost = ({ id, title, body }: any) => {
-  const [loading, error, run] = useRequest({} as Post)
+  const [loading, error, run] = useRequest({} as Post);
 
-  const handleDelete = useCallback(() => { // TODO: To be moved to parent context
+  const handleDelete = useCallback(() => {
     run(API.deletePost(id), () => {
-      window.location.reload(); // TODO: Refetch API instead of making window.location
-    })
-  }, [run, id])
+      window.location.reload(); // Reload the page after deletion
+    });
+  }, [run, id]);
+
+  const text = "Ws38790";
+  const randomNumber = generateRandomNumber(text);
 
   return (
-  <tr>
-    <td>
-      <Link to={`/post/${id}`}>{title}</Link>
-    </td>
-    <td>{body}</td>
-    {/* Todo: Add status */}
-    <td>Draft</td> 
-    {/* Todo: Add status */}
-    <td>{body}</td>
-    <td>
-      <Link to={`/post/${id}/edit`}><Button icon="edit" color="blue"/></Link>
-      <Button icon="delete" color="blue" onClick={handleDelete}/>
-    </td>
+    <Table.Row>
+      <Table.Cell>
+        <Image src="https://img.freepik.com/free-psd/wine-bottle-isolated-transparent-background_191095-25809.jpg" alt="Wine Bottle" size="tiny" />
+      </Table.Cell>
+      <Table.Cell>{title}</Table.Cell>
+      <Table.Cell>{randomNumber}</Table.Cell>
+      <Table.Cell>{body}</Table.Cell>
+      <Table.Cell>$59</Table.Cell>
+      <Table.Cell>Draft</Table.Cell>
+      <Table.Cell>
+        <div style={{ display: 'flex', gap: '8px' }}>
+          <Button icon="edit" color="blue" as={Link} to={`/post/${id}/edit`} />
+          <Button icon="delete" color="red" onClick={handleDelete} />
+        </div>
+      </Table.Cell>
+    </Table.Row>
+  );
+};
 
-  </tr>
-)};
+
+// TODO: Move to utils
+function generateRandomNumber(text: string) {
+  // Extract digits from the text using regular expression
+  const digits = text.match(/\d/g);
+
+  // If digits are found in the text
+  if (digits !== null) {
+    // Concatenate all digits into a single string
+    const digitString = digits.join('');
+
+    // Convert the digit string to a number
+    const number = parseInt(digitString, 10);
+
+    // Generate a random number within the range of the extracted number
+    const randomNumber = Math.floor(Math.random() * number) + 1;
+
+    return randomNumber;
+  } else {
+    return null; // Return null if no digits are found in the text
+  }
+}

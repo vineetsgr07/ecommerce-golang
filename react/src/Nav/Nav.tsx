@@ -26,7 +26,7 @@ const Nav = () => {
       <Menu.Menu className={menuClass} position="left" id="override">
         <Menu.Item as={NavLink} to="/" name="Home" />
         <LoggedIn>
-          <Menu.Item as={NavLink} to="/posts" name="Posts" />
+          <Menu.Item as={NavLink} to="/posts" name="Products" />
         </LoggedIn>
       </Menu.Menu>
       <Menu.Menu className={menuClass} position="right">
