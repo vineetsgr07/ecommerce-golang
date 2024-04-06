@@ -19,6 +19,7 @@ var (
 
 	UserNotFound  = errors.New("User does not exist")
 	PostNotFound  = errors.New("Post does not exist")
+	ProductNotFound  = errors.New("Post does not exist")
 	ResetNotFound = errors.New("Invalid password reset code")
 
 	BadCSRF           = errors.New("Missing CSRF Header")

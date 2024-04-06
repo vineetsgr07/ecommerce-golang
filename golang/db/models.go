@@ -5,6 +5,7 @@
 package db
 
 import (
+	"database/sql"
 	"database/sql/driver"
 	"fmt"
 	"time"
@@ -50,6 +51,50 @@ func (ns NullPostStatus) Value() (driver.Value, error) {
 		return nil, nil
 	}
 	return ns.PostStatus, nil
+}
+
+type ProductProductStatus string
+
+const (
+	ProductProductStatusDraft        ProductProductStatus = "draft"
+	ProductProductStatusAvailable    ProductProductStatus = "available"
+	ProductProductStatusOutOfStock   ProductProductStatus = "out_of_stock"
+	ProductProductStatusDiscontinued ProductProductStatus = "discontinued"
+)
+
+func (e *ProductProductStatus) Scan(src interface{}) error {
+	switch s := src.(type) {
+	case []byte:
+		*e = ProductProductStatus(s)
+	case string:
+		*e = ProductProductStatus(s)
+	default:
+		return fmt.Errorf("unsupported scan type for ProductProductStatus: %T", src)
+	}
+	return nil
+}
+
+type NullProductProductStatus struct {
+	ProductProductStatus ProductProductStatus
+	Valid                bool // Valid is true if String is not NULL
+}
+
+// Scan implements the Scanner interface.
+func (ns *NullProductProductStatus) Scan(value interface{}) error {
+	if value == nil {
+		ns.ProductProductStatus, ns.Valid = "", false
+		return nil
+	}
+	ns.Valid = true
+	return ns.ProductProductStatus.Scan(value)
+}
+
+// Value implements the driver Valuer interface.
+func (ns NullProductProductStatus) Value() (driver.Value, error) {
+	if !ns.Valid {
+		return nil, nil
+	}
+	return ns.ProductProductStatus, nil
 }
 
 type UserStatus string
@@ -103,6 +148,17 @@ type Post struct {
 	Status    PostStatus `json:"status"`
 	CreatedAt time.Time  `json:"created_at"`
 	UpdatedAt time.Time  `json:"updated_at"`
+}
+
+type ProductProduct struct {
+	ID          int64                `json:"id"`
+	Name        string               `json:"name"`
+	Description string               `json:"description"`
+	Status      ProductProductStatus `json:"status"`
+	ImageUrl    sql.NullString       `json:"image_url"`
+	CreatedAt   time.Time            `json:"created_at"`
+	UpdatedAt   time.Time            `json:"updated_at"`
+	UserID      sql.NullInt64        `json:"user_id"`
 }
 
 type Reset struct {

@@ -28,7 +28,7 @@ const PostForm = () => {
   const handleSubmit = useCallback(() => {
     const action = postID ? API.updatePost(fields) : API.createPost(fields);
     run(action, (data) => {
-      navigate(`/post/${data.id}`);
+      navigate(`/posts`);
     })
   }, [postID, fields, run, navigate])
 
@@ -41,7 +41,7 @@ const PostForm = () => {
   const { id, title, body } = fields;
 
   return (
-    <SimplePage icon='file alternate outline' title={postID ? `Edit Post #${postID}` : 'Create a Post'}>
+    <SimplePage icon='file alternate outline' title={postID ? `Edit Post #${postID}` : 'Add Product'}>
       <Form error name="createPost" loading={loading} onSubmit={handleSubmit}>
         <Message error>{error}</Message>
         <Form.Input

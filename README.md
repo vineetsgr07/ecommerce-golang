@@ -37,8 +37,6 @@ docker-compose up
 1) Visit `http://localhost:4500`
 2) Make changes to go, sql, or react code, and enjoy hot-reload goodness!
 
-<img src="./docs/demo.png" width="400"/>
-
 ## Run client-side test watcher
 ```bash
 docker-compose exec react npm run test

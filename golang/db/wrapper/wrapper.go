@@ -5,7 +5,7 @@ import (
 	"log"
 
 	"github.com/jackc/pgx/v4/pgxpool"
-	"github.com/karlkeefer/pngr/golang/db"
+	"github.com/vineetsrg07/ecommerce/golang/db"
 )
 
 type Querier interface {

@@ -1,7 +1,9 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect,useCallback } from 'react'
+import './style.css'
 
+import { useParams, useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom'
-import { Segment, Message, Header, Button, Placeholder, SegmentGroup, PlaceholderHeader } from 'semantic-ui-react'
+import { Segment, Message, Header,Grid, Button, Placeholder, SegmentGroup, PlaceholderHeader,Table} from 'semantic-ui-react'
 
 import API from 'Api'
 import { useRequest } from 'Shared/Hooks'
@@ -18,13 +20,20 @@ const Posts = () => {
   }, [run])
 
   return (
-    <SimplePage icon='copy outline' title='My Posts' error={error}>
-      <p>This page fetches some protected data that only the logged in user ({user.email}) can see!</p>
+    <SimplePage icon='copy outline' title='Products' error={error}>
+      <Grid columns={2}>
+        <Grid.Column floated='left'>
+          <p>This page fetches some protected data that only the logged in user ({user.email}) can see!</p>
+        </Grid.Column>
+        <Grid.Column textAlign='right'>
+          <Button as={Link} to='/post/create' primary icon='plus' content='Add Product' />
+        </Grid.Column>
+      </Grid>
+
       {loading && <PostsPlaceholder/>}
       {posts.length === 0 && !loading && 
         <Message warning>No posts found...</Message>}
-      {posts.map(SinglePost)}
-      <Button as={Link} to='/post/create' primary icon='plus' content='New post' />
+      {<PostsTable posts={posts}/>}
     </SimplePage>
   )
 }
@@ -51,11 +60,58 @@ const PostsPlaceholder = () => (
   </SegmentGroup>
 )
 
-const SinglePost = ({ id, title, body }: Post) => (
-  <Segment.Group key={id}>
-    <Header attached='top' as='h3'>
+// const SinglePost = ({ id, title, body }: Post) => (
+//   <Segment.Group key={id}>
+//     <Header attached='top' as='h3'>
+//       <Link to={`/post/${id}`}>{title}</Link>
+//     </Header>
+//     <Segment attached='bottom' content={body} />
+//   </Segment.Group>
+// )
+
+
+const PostsTable = ({ posts }:any) => (
+  <Table celled>
+     <Table.Header>
+      <tr>
+        <Table.HeaderCell> Product</Table.HeaderCell>
+        <Table.HeaderCell> Title</Table.HeaderCell>
+        <Table.HeaderCell> Status</Table.HeaderCell>
+        <Table.HeaderCell> Image</Table.HeaderCell>
+        <Table.HeaderCell> Edit/Delete</Table.HeaderCell>
+      </tr>
+    </Table.Header>
+    <tbody>
+      {posts.map((post:any) => (
+        <SinglePost key={post.id} {...post} />
+      ))}
+    </tbody>
+  </Table>
+);
+
+const SinglePost = ({ id, title, body }: any) => {
+  const [loading, error, run] = useRequest({} as Post)
+
+  const handleDelete = useCallback(() => { // TODO: To be moved to parent context
+    run(API.deletePost(id), () => {
+      window.location.reload(); // TODO: Refetch API instead of making window.location
+    })
+  }, [run, id])
+
+  return (
+  <tr>
+    <td>
       <Link to={`/post/${id}`}>{title}</Link>
-    </Header>
-    <Segment attached='bottom' content={body} />
-  </Segment.Group>
-)
+    </td>
+    <td>{body}</td>
+    {/* Todo: Add status */}
+    <td>Draft</td> 
+    {/* Todo: Add status */}
+    <td>{body}</td>
+    <td>
+      <Link to={`/post/${id}/edit`}><Button icon="edit" color="blue"/></Link>
+      <Button icon="delete" color="blue" onClick={handleDelete}/>
+    </td>
+
+  </tr>
+)};

@@ -1,4 +1,4 @@
-module github.com/karlkeefer/pngr/golang
+module github.com/vineetsrg07/ecommerce/golang
 
 require (
 	github.com/golang-jwt/jwt/v4 v4.5.0

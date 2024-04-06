@@ -10,17 +10,23 @@ import (
 
 type Querier interface {
 	CreatePost(ctx context.Context, arg CreatePostParams) (Post, error)
+	CreateProduct(ctx context.Context, arg CreateProductParams) (ProductProduct, error)
 	CreateReset(ctx context.Context, arg CreateResetParams) (Reset, error)
 	CreateUser(ctx context.Context, arg CreateUserParams) (User, error)
 	DeletePostByIDs(ctx context.Context, arg DeletePostByIDsParams) error
+	DeleteProductByID(ctx context.Context, id int64) error
 	DeleteResetsForUser(ctx context.Context, userID int64) error
+	FindAllProducts(ctx context.Context) error
 	FindPostByIDs(ctx context.Context, arg FindPostByIDsParams) (Post, error)
 	FindPostsByAuthor(ctx context.Context, authorID int64) ([]Post, error)
+	FindProductByID(ctx context.Context, id int64) (ProductProduct, error)
+	FindProductsByStatus(ctx context.Context, status ProductProductStatus) ([]ProductProduct, error)
 	FindResetByCode(ctx context.Context, code string) (Reset, error)
 	FindUserByEmail(ctx context.Context, lower string) (User, error)
 	FindUserByID(ctx context.Context, id int64) (User, error)
 	FindUserByVerificationCode(ctx context.Context, verification string) (User, error)
 	UpdatePost(ctx context.Context, arg UpdatePostParams) (Post, error)
+	UpdateProduct(ctx context.Context, arg UpdateProductParams) (ProductProduct, error)
 	UpdateUserPassword(ctx context.Context, arg UpdateUserPasswordParams) error
 	UpdateUserStatus(ctx context.Context, arg UpdateUserStatusParams) error
 }

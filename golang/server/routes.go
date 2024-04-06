@@ -6,11 +6,11 @@ import (
 	"runtime/debug"
 
 	"github.com/julienschmidt/httprouter"
-	"github.com/karlkeefer/pngr/golang/db"
-	"github.com/karlkeefer/pngr/golang/env"
-	"github.com/karlkeefer/pngr/golang/errors"
-	"github.com/karlkeefer/pngr/golang/server/handlers"
-	"github.com/karlkeefer/pngr/golang/server/write"
+	"github.com/vineetsrg07/ecommerce/golang/db"
+	"github.com/vineetsrg07/ecommerce/golang/env"
+	"github.com/vineetsrg07/ecommerce/golang/errors"
+	"github.com/vineetsrg07/ecommerce/golang/server/handlers"
+	"github.com/vineetsrg07/ecommerce/golang/server/write"
 )
 
 func (srv *server) ConfigureRouter() {
@@ -45,7 +45,15 @@ func (srv *server) ConfigureRouter() {
 	srv.POST("/post", handlers.CreatePost)
 	srv.PUT("/post", handlers.UpdatePost)
 	srv.DELETE("/post/:id", handlers.DeletePost)
+
+	// PRODUCTS
+	srv.GET("/products", handlers.GetProducts)      
+	srv.GET("/product/:id", handlers.GetProduct)   
+	srv.POST("/product", handlers.CreateProduct)   
+	srv.PUT("/product/:id", handlers.UpdateProduct) 
+	srv.DELETE("/product/:id", handlers.DeleteProduct) 
 }
+
 
 // srvHandler is the extended handler function that our API routes use
 type srvHandler func(env env.Env, user *db.User, w http.ResponseWriter, r *http.Request) http.HandlerFunc

@@ -7,7 +7,7 @@ import (
 	"sync"
 	"syscall"
 
-	"github.com/karlkeefer/pngr/golang/env"
+	"github.com/vineetsrg07/ecommerce/golang/env"
 )
 
 func main() {

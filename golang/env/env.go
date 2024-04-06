@@ -2,8 +2,8 @@ package env
 
 import (
 	"github.com/jackc/pgx/v4/pgxpool"
-	"github.com/karlkeefer/pngr/golang/db/wrapper"
-	"github.com/karlkeefer/pngr/golang/mail"
+	"github.com/vineetsrg07/ecommerce/golang/db/wrapper"
+	"github.com/vineetsrg07/ecommerce/golang/mail"
 )
 
 type Env interface {

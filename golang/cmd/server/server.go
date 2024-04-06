@@ -7,7 +7,7 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/karlkeefer/pngr/golang/server"
+	"github.com/vineetsrg07/ecommerce/golang/server"
 )
 
 const port = ":5001"

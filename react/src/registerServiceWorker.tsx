@@ -1,4 +1,4 @@
-// NOTE: PNGR disables this behavior by default
+// NOTE: ecommerce disables this behavior by default
 
 // In production, we can register a service worker to serve assets from local cache.
 

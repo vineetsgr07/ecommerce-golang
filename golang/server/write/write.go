@@ -5,7 +5,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/karlkeefer/pngr/golang/errors"
+	"github.com/vineetsrg07/ecommerce/golang/errors"
 )
 
 type errorResponse struct {

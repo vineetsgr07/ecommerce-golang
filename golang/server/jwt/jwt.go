@@ -7,13 +7,13 @@ import (
 	"time"
 
 	jwt "github.com/golang-jwt/jwt/v4"
-	"github.com/karlkeefer/pngr/golang/db"
-	"github.com/karlkeefer/pngr/golang/env"
-	"github.com/karlkeefer/pngr/golang/errors"
+	"github.com/vineetsrg07/ecommerce/golang/db"
+	"github.com/vineetsrg07/ecommerce/golang/env"
+	"github.com/vineetsrg07/ecommerce/golang/errors"
 )
 
 // jwt-cookie building and parsing
-const cookieName = "pngr-jwt"
+const cookieName = "ecommerce-jwt"
 const insecureSecret = "s452yAh2wre8PZcN2V8Oqr87O1DcskZo8H63o6SUQXsu70fEoEtriipLgh7GaVdId-SBbCpcg-UyK7ODZU7BKw"
 
 // tokens auto-refresh at the end of their lifetime,

@@ -10,8 +10,8 @@ import { WithUser } from 'Shared/UserContainer'
 const App = () => (
   <WithUser>
     <Helmet
-      defaultTitle="PNGR"
-      titleTemplate="%s | PNGR"
+      defaultTitle="ecommerce"
+      titleTemplate="%s | ecommerce"
     >
       {/* put meta tags here for opengraph and stuff */}
     </Helmet>

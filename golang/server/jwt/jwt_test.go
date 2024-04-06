@@ -7,11 +7,11 @@ import (
 	"time"
 
 	"github.com/golang/mock/gomock"
-	"github.com/karlkeefer/pngr/golang/db"
-	"github.com/karlkeefer/pngr/golang/db/wrapper"
-	"github.com/karlkeefer/pngr/golang/env"
-	"github.com/karlkeefer/pngr/golang/errors"
 	"github.com/stretchr/testify/assert"
+	"github.com/vineetsrg07/ecommerce/golang/db"
+	"github.com/vineetsrg07/ecommerce/golang/db/wrapper"
+	"github.com/vineetsrg07/ecommerce/golang/env"
+	"github.com/vineetsrg07/ecommerce/golang/errors"
 )
 
 func TestHandleUserCookie(t *testing.T) {

@@ -4,11 +4,11 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/karlkeefer/pngr/golang/db"
-	"github.com/karlkeefer/pngr/golang/env"
-	"github.com/karlkeefer/pngr/golang/errors"
-	"github.com/karlkeefer/pngr/golang/server/jwt"
-	"github.com/karlkeefer/pngr/golang/server/write"
+	"github.com/vineetsrg07/ecommerce/golang/db"
+	"github.com/vineetsrg07/ecommerce/golang/env"
+	"github.com/vineetsrg07/ecommerce/golang/errors"
+	"github.com/vineetsrg07/ecommerce/golang/server/jwt"
+	"github.com/vineetsrg07/ecommerce/golang/server/write"
 )
 
 type createResetRequest struct {

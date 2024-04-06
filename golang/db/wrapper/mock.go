@@ -9,7 +9,7 @@ import (
 	reflect "reflect"
 
 	gomock "github.com/golang/mock/gomock"
-	db "github.com/karlkeefer/pngr/golang/db"
+	db "github.com/vineetsrg07/ecommerce/golang/db"
 )
 
 // MockQuerier is a mock of Querier interface.
@@ -48,6 +48,21 @@ func (m *MockQuerier) CreatePost(ctx context.Context, arg db.CreatePostParams) (
 func (mr *MockQuerierMockRecorder) CreatePost(ctx, arg interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreatePost", reflect.TypeOf((*MockQuerier)(nil).CreatePost), ctx, arg)
+}
+
+// CreateProduct mocks base method.
+func (m *MockQuerier) CreateProduct(ctx context.Context, arg db.CreateProductParams) (db.ProductProduct, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "CreateProduct", ctx, arg)
+	ret0, _ := ret[0].(db.ProductProduct)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// CreateProduct indicates an expected call of CreateProduct.
+func (mr *MockQuerierMockRecorder) CreateProduct(ctx, arg interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateProduct", reflect.TypeOf((*MockQuerier)(nil).CreateProduct), ctx, arg)
 }
 
 // CreateReset mocks base method.
@@ -94,6 +109,20 @@ func (mr *MockQuerierMockRecorder) DeletePostByIDs(ctx, arg interface{}) *gomock
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeletePostByIDs", reflect.TypeOf((*MockQuerier)(nil).DeletePostByIDs), ctx, arg)
 }
 
+// DeleteProductByID mocks base method.
+func (m *MockQuerier) DeleteProductByID(ctx context.Context, id int64) error {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "DeleteProductByID", ctx, id)
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+// DeleteProductByID indicates an expected call of DeleteProductByID.
+func (mr *MockQuerierMockRecorder) DeleteProductByID(ctx, id interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteProductByID", reflect.TypeOf((*MockQuerier)(nil).DeleteProductByID), ctx, id)
+}
+
 // DeleteResetsForUser mocks base method.
 func (m *MockQuerier) DeleteResetsForUser(ctx context.Context, userID int64) error {
 	m.ctrl.T.Helper()
@@ -106,6 +135,20 @@ func (m *MockQuerier) DeleteResetsForUser(ctx context.Context, userID int64) err
 func (mr *MockQuerierMockRecorder) DeleteResetsForUser(ctx, userID interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteResetsForUser", reflect.TypeOf((*MockQuerier)(nil).DeleteResetsForUser), ctx, userID)
+}
+
+// FindAllProducts mocks base method.
+func (m *MockQuerier) FindAllProducts(ctx context.Context) error {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "FindAllProducts", ctx)
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+// FindAllProducts indicates an expected call of FindAllProducts.
+func (mr *MockQuerierMockRecorder) FindAllProducts(ctx interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "FindAllProducts", reflect.TypeOf((*MockQuerier)(nil).FindAllProducts), ctx)
 }
 
 // FindPostByIDs mocks base method.
@@ -136,6 +179,36 @@ func (m *MockQuerier) FindPostsByAuthor(ctx context.Context, authorID int64) ([]
 func (mr *MockQuerierMockRecorder) FindPostsByAuthor(ctx, authorID interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "FindPostsByAuthor", reflect.TypeOf((*MockQuerier)(nil).FindPostsByAuthor), ctx, authorID)
+}
+
+// FindProductByID mocks base method.
+func (m *MockQuerier) FindProductByID(ctx context.Context, id int64) (db.ProductProduct, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "FindProductByID", ctx, id)
+	ret0, _ := ret[0].(db.ProductProduct)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// FindProductByID indicates an expected call of FindProductByID.
+func (mr *MockQuerierMockRecorder) FindProductByID(ctx, id interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "FindProductByID", reflect.TypeOf((*MockQuerier)(nil).FindProductByID), ctx, id)
+}
+
+// FindProductsByStatus mocks base method.
+func (m *MockQuerier) FindProductsByStatus(ctx context.Context, status db.ProductProductStatus) ([]db.ProductProduct, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "FindProductsByStatus", ctx, status)
+	ret0, _ := ret[0].([]db.ProductProduct)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// FindProductsByStatus indicates an expected call of FindProductsByStatus.
+func (mr *MockQuerierMockRecorder) FindProductsByStatus(ctx, status interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "FindProductsByStatus", reflect.TypeOf((*MockQuerier)(nil).FindProductsByStatus), ctx, status)
 }
 
 // FindResetByCode mocks base method.
@@ -211,6 +284,21 @@ func (m *MockQuerier) UpdatePost(ctx context.Context, arg db.UpdatePostParams) (
 func (mr *MockQuerierMockRecorder) UpdatePost(ctx, arg interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdatePost", reflect.TypeOf((*MockQuerier)(nil).UpdatePost), ctx, arg)
+}
+
+// UpdateProduct mocks base method.
+func (m *MockQuerier) UpdateProduct(ctx context.Context, arg db.UpdateProductParams) (db.ProductProduct, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "UpdateProduct", ctx, arg)
+	ret0, _ := ret[0].(db.ProductProduct)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// UpdateProduct indicates an expected call of UpdateProduct.
+func (mr *MockQuerierMockRecorder) UpdateProduct(ctx, arg interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateProduct", reflect.TypeOf((*MockQuerier)(nil).UpdateProduct), ctx, arg)
 }
 
 // UpdateUserPassword mocks base method.
